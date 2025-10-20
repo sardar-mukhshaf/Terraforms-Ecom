@@ -1,0 +1,50 @@
+# ============================================================================
+# Development Environment - Terraform Variables Example
+# ============================================================================
+# COPY: cp terraform.tfvars.example terraform.tfvars
+# EDIT: terraform.tfvars with your development values
+# ============================================================================
+
+aws_region = "us-east-1"  # REPLACE_ME
+
+availability_zones = [
+  "us-east-1a",  # REPLACE_ME
+  "us-east-1b"
+]
+
+vpc_cidr = "10.20.0.0/16"
+
+public_subnet_cidrs = [
+  "10.20.1.0/24",
+  "10.20.2.0/24"
+]
+
+private_subnet_cidrs = [
+  "10.20.101.0/24",
+  "10.20.102.0/24"
+]
+
+cluster_name = "ecom-dev-cluster"
+
+kubernetes_version = "1.28"
+
+rds_engine_version = "15.3"
+
+db_master_username = "admin"
+
+# REPLACE_ME: Use a test password for dev
+db_master_password = "REPLACE_ME_WITH_PASSWORD"
+
+# REPLACE_ME: Use your account ID
+assets_bucket_name = "ecom-assets-dev-123456789012"
+
+github_oidc_thumbprint = "6938fd4d98bab03faadb97b34396831e3780aea1"
+
+# REPLACE_ME
+github_repo = "REPLACE_ME/ecommerce-app"
+
+common_tags = {
+  Project     = "ecommerce"
+  Environment = "development"
+  ManagedBy   = "Terraform"
+}

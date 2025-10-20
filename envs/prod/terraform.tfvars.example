@@ -1,0 +1,103 @@
+# ============================================================================
+# Production Environment - Terraform Variables Example
+# ============================================================================
+# COPY THIS FILE: cp terraform.tfvars.example terraform.tfvars
+# THEN EDIT: terraform.tfvars with your production values
+#
+# IMPORTANT: NEVER commit terraform.tfvars to version control
+# Add to .gitignore: terraform.tfvars, *.tfvars.json, .terraform/
+# ============================================================================
+
+# ============================================================================
+# AWS Configuration - REPLACE_ME
+# ============================================================================
+aws_region = "us-east-1"  # REPLACE_ME: Change to your preferred region
+
+availability_zones = [
+  "us-east-1a",  # REPLACE_ME: Update for your region
+  "us-east-1b",
+  "us-east-1c"
+]
+
+# ============================================================================
+# VPC Configuration
+# ============================================================================
+vpc_cidr = "10.10.0.0/16"
+
+public_subnet_cidrs = [
+  "10.10.1.0/24",
+  "10.10.2.0/24",
+  "10.10.3.0/24"
+]
+
+private_subnet_cidrs = [
+  "10.10.101.0/24",
+  "10.10.102.0/24",
+  "10.10.103.0/24"
+]
+
+# ============================================================================
+# EKS Cluster Configuration - REPLACE_ME
+# ============================================================================
+cluster_name = "ecom-prod-cluster"
+
+kubernetes_version = "1.28"  # REPLACE_ME: Update to latest stable
+
+eks_desired_nodes = 3
+eks_min_nodes     = 2
+eks_max_nodes     = 8
+
+eks_instance_types = ["t3.medium"]  # REPLACE_ME: Use larger for production (m5.large, m5.xlarge)
+
+# ============================================================================
+# RDS Database Configuration - REPLACE_ME
+# ============================================================================
+rds_engine_version = "15.3"
+
+rds_instance_class = "db.t3.medium"  # REPLACE_ME: Use db.m5.large or larger for production
+
+rds_storage_size = 100  # REPLACE_ME: Adjust based on data volume (GB)
+
+db_master_username = "admin"  # REPLACE_ME: Customize username
+
+# GENERATE STRONG PASSWORD: openssl rand -base64 32
+# !!!IMPORTANT: DO NOT COMMIT THIS PASSWORD
+# Use AWS Secrets Manager or Terraform Cloud for production
+db_master_password = "REPLACE_ME_WITH_STRONG_PASSWORD"
+
+# ============================================================================
+# S3 Configuration - REPLACE_ME
+# ============================================================================
+# S3 bucket names must be globally unique
+# Format: ecom-assets-prod-{ACCOUNT_ID}
+# Get account ID: aws sts get-caller-identity --query Account --output text
+assets_bucket_name = "ecom-assets-prod-123456789012"  # REPLACE_ME: Use your account ID
+
+# Optional: KMS key for S3 encryption
+s3_kms_key_id = null  # REPLACE_ME: Optional - use custom KMS key ARN
+
+# ============================================================================
+# GitHub Actions Configuration - REPLACE_ME
+# ============================================================================
+github_oidc_thumbprint = "6938fd4d98bab03faadb97b34396831e3780aea1"
+
+# Format: "owner/repo" or "owner/*" for all repos in organization
+github_repo = "REPLACE_ME/ecommerce-app"
+
+# ============================================================================
+# CloudWatch Configuration
+# ============================================================================
+cloudwatch_kms_key_id = null  # Optional: KMS key for log encryption
+
+# ============================================================================
+# Common Tags - REPLACE_ME
+# ============================================================================
+common_tags = {
+  Project     = "ecommerce"
+  Environment = "production"
+  ManagedBy   = "Terraform"
+  # REPLACE_ME: Add your organization-specific tags
+  # Team        = "platform"
+  # CostCenter  = "engineering"
+  # Owner       = "devops"
+}
