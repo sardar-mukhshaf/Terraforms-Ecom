@@ -57,7 +57,7 @@ aws sts get-caller-identity
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-org/Terraform-E-Commerce.git
+git clone https://github.com/sardar-mukhshaf/Terraform-E-Commerce.git
 cd Terraform-E-Commerce
 
 # 2. Create state backend (one-time setup)
