@@ -2,7 +2,6 @@
 
 Production-grade Terraform for running an e-commerce platform on AWS: EKS for compute, RDS PostgreSQL for data, S3 + ECR for storage and images, ALB for ingress, and CloudWatch for observability. Two fully separated environments (prod, dev), eight reusable modules, remote state with locking.
 
-**Repo:** `github.com/sardar-mukhshaf/Terraform-E-Commerce`
 **License:** Apache 2.0
 
 ---
